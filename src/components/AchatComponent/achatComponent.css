@@ -1,0 +1,44 @@
+.achat-component {
+  display: flex;
+  flex-direction: column;
+}
+
+.achat-component .list-container {
+  width: 80%;
+  margin: auto;
+}
+.recherche {
+  display: none;
+}
+
+#recherche-display {
+  background: #1f3f81;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  width: 175px;
+  height: 45px;
+  margin-left: 75px;
+  transition: 0.5s ease;
+  outline: none;
+}
+
+#recherche-display:hover {
+  color: #1f3f81;
+  background: rgb(225, 225, 228);
+}
+
+#search-display {
+  margin: 0 0 0 0 !important;
+  max-height: 800px;
+  margin: 0 0 0 0 !important;
+  transition: max-height 1000ms;
+}
+#search-desabled {
+  margin: 0 0 0 0 !important;
+  max-height: 0px;
+  overflow: hidden;
+  transition: max-height 1000ms;
+}
