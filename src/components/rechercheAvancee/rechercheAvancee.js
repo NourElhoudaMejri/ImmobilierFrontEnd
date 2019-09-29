@@ -63,7 +63,7 @@ class RechercheAvancee extends Component {
   render() {
     return (
       <div className="search-main">
-        <form className="callus col-xs-12">
+        <form className="callus col-xs-12 search-form">
           <div className="col-md-3 col-sm-6">
             <div className="form-group">
               <label> Catégorie </label>
@@ -88,6 +88,7 @@ class RechercheAvancee extends Component {
               {/* <Categories /> */}
             </div>
           </div>
+
           <div className="col-md-3 col-sm-6">
             <div className="form-group">
               <label> Statut du bien </label>
@@ -104,6 +105,7 @@ class RechercheAvancee extends Component {
             </div>
             {/* <Statut /> */}
           </div>
+
           <div className="col-md-3 col-sm-6">
             <div className="form-group">
               <label> Surface du bien </label>
@@ -288,7 +290,7 @@ class RechercheAvancee extends Component {
             />
           </div>
 
-          <div className="col-md-3 col-sm-6">
+          <div className="col-md-3 col-sm-6 lastChild">
             <label> Prix Maximum </label>
             <input
               id="placeholder-color"

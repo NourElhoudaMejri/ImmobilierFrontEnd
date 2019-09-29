@@ -6,6 +6,7 @@
 .achat-component .list-container {
   width: 80%;
   margin: auto;
+  min-height: 50vh;
 }
 .recherche {
   display: none;
@@ -41,4 +42,11 @@
   max-height: 0px;
   overflow: hidden;
   transition: max-height 1000ms;
+}
+
+.list-container .empty-search-div {
+  font-size: 24px;
+  text-align: center;
+  height: 100%;
+  margin: 70px 0 0 0;
 }

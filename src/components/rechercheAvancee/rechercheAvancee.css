@@ -23,3 +23,9 @@
 .search-main .search-btn {
   align-self: flex-end;
 }
+
+@media screen and(min-width : 992px) {
+  .search-form .lastChild {
+    float: right !important;
+  }
+}

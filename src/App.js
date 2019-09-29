@@ -35,7 +35,7 @@ class App extends Component {
           <Route path="/contact" component={Contact} />
           <Route path="/login" component={Login} />
           <Route path="/profile" component={Profile} />
-          <Route path="/vente" component={CreeAnnonce} />
+          <Route path="/déposer-une-annonce" component={CreeAnnonce} />
           <Route path="/favoris" component={Favoris} />
           <Route path="/mesProprietes" component={MesProprietes} />
           <Route path="/detailsAchat" component={DetailsAchat} />

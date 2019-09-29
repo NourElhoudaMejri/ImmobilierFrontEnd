@@ -1,39 +1,59 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+
 class NavBarItem extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
+
+  onLinkClick = e => {
+    let activeElement = document.getElementsByClassName("active")[0];
+    activeElement.className = "";
+    e.target.className = "active";
+  };
+
   render() {
     return (
       <div className="col-md-12">
         <ul className="f-p-links margin_bottom">
           <li>
-            <a href="profile.html">
+            <Link
+              to="/profile"
+              className="active"
+              onClick={e => this.onLinkClick(e)}
+            >
               <i className="icon-icons230" />
               Profile
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="my_properties.html">
-              <i className="icon-icons215" /> Ma Propriété
-            </a>
+            <Link href="my_properties.html" onClick={e => this.onLinkClick(e)}>
+              <i className="icon-icons215" /> Mes Propriétés
+            </Link>
           </li>
           <li>
-            <a href="submit_property.html" className="active">
+            <Link
+              to="/"
+              onClick={e => this.onLinkClick(e)}
+              to="/déposer-une-annonce"
+            >
               <i className="icon-icons215" /> Soumettre la propriété
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="favorite_properties.html">
+            <Link
+              href="favorite_properties.html"
+              onClick={e => this.onLinkClick(e)}
+            >
               <i className="icon-icons43" /> Propriétés favorites{" "}
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="login.html">
+            <Link href="login.html" onClick={e => this.onLinkClick(e)}>
               <i className="icon-lock-open3" />
               Déconnexion
-            </a>
+            </Link>
           </li>
         </ul>
       </div>

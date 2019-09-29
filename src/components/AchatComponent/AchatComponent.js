@@ -7,6 +7,8 @@ import MapContainer from "./../google-map/googleMap";
 import RechercheAvancee from "../rechercheAvancee/rechercheAvancee";
 import { getAnnouncementsList } from "../../Redux/annoncesActions";
 import ItemList from "../itemList/itemList";
+import LocationList from "../LocationComponent/locationList";
+import { Pagination } from "antd";
 
 class AchatComponent extends Component {
   componentDidMount() {
@@ -62,13 +64,22 @@ class AchatComponent extends Component {
               </div>
             </div>
             <div className="row">
-              <RechercheAvancee />
+              <RechercheAvancee displayStatu={false} />
             </div>
           </div>
         </section>
         <div className="list-container">
-          <ItemList liste={this.props.announcementsList} />
+          {this.props.announcementsList.length === 0 ? (
+            <div className="empty-search-div">
+              Nous n'avons pas trouvé des biens qui correspondent à votre
+              recherche
+              <div>Merci de modifier vos critères de recherche</div>
+            </div>
+          ) : (
+            <ItemList liste={this.props.announcementsList} />
+          )}
         </div>
+        <Pagination />
       </div>
     );
   }
