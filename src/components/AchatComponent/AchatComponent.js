@@ -64,7 +64,7 @@ class AchatComponent extends Component {
               </div>
             </div>
             <div className="row">
-              <RechercheAvancee displayStatu={false} />
+              <RechercheAvancee displayStatu={true} />
             </div>
           </div>
         </section>

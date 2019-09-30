@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import axios from "axios";
+
 class Register extends Component {
   constructor(props) {
     super(props);
@@ -33,7 +35,11 @@ class Register extends Component {
 
     axios
       .post("http://localhost:8080/clients/register", client)
-      .then(res => console.log(res.data))
+      .then(res => {
+        if (res.status == 200) {
+          this.props.history.push("/login");
+        }
+      })
       .catch(err => console.log(err.response.data));
   }
 
@@ -121,7 +127,6 @@ class Register extends Component {
                 type="submit"
                 defaultValue="Creat an Account"
                 className="btn-slide"
-
               />
             </div>
           </div>
@@ -131,4 +136,4 @@ class Register extends Component {
   }
 }
 
-export default Register;
+export default withRouter(Register);

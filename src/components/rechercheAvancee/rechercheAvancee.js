@@ -88,7 +88,7 @@ class RechercheAvancee extends Component {
               {/* <Categories /> */}
             </div>
           </div>
-
+ {this.props.displayStatu &&
           <div className="col-md-3 col-sm-6">
             <div className="form-group">
               <label> Statut du bien </label>
@@ -104,7 +104,7 @@ class RechercheAvancee extends Component {
               </select>
             </div>
             {/* <Statut /> */}
-          </div>
+          </div>}
 
           <div className="col-md-3 col-sm-6">
             <div className="form-group">

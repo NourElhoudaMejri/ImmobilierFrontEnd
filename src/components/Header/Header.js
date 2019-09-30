@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Logo from "../../images/logo.png";
-import { Link, NavLink } from "react-router-dom";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 class Header extends Component {
   render() {
@@ -16,34 +16,40 @@ class Header extends Component {
                 <div className="col-md-7 text-right">
                   <ul className="breadcrumb_top text-right">
                     <li>
-                      <a href="/favoris">
-                        <i className="icon-icons43" />
-                        Favoris
-                      </a>
+                      {this.props.user.nom && (
+                        <Link to="/favoris">
+                          <i className="icon-icons43" />
+                          Favoris
+                        </Link>
+                      )}
                     </li>
                     <li>
-                      <a href="/vente">
+                      <Link to="/déposer-une-annonce">
                         <i className="icon-icons215" />
                         Créer une annonce
-                      </a>
+                      </Link>
                     </li>
+                    {this.props.user.nom && (
+                      <li>
+                        <Link to="/mesProprietes">
+                          <i className="icon-icons215" />
+                          Mes Proprietés
+                        </Link>
+                      </li>
+                    )}
+                    {this.props.user.nom && (
+                      <li>
+                        <Link to="/profile">
+                          <i className="icon-icons230" />
+                          Profil
+                        </Link>
+                      </li>
+                    )}
                     <li>
-                      <a href="/mesProprietes">
-                        <i className="icon-icons215" />
-                        Mes Proprietés
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/profile">
-                        <i className="icon-icons230" />
-                        Profil
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/login">
+                      <Link to="/login">
                         <i className="icon-icons179" />
                         Connexion / Inscription
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </div>
@@ -55,9 +61,9 @@ class Header extends Component {
               <div className="row">
                 <div className="col-md-3 col-sm-12">
                   <div className="logo">
-                    <a href="/">
+                    <Link to="/">
                       <img src="images/logo.png" />
-                    </a>
+                    </Link>
                   </div>
                 </div>
                 {/*Info Box*/}
@@ -93,7 +99,9 @@ class Header extends Component {
                         <strong>Addresse Email</strong>
                       </li>
                       <li>
-                        <a href="javascript:void(0)">info@MeilleurImmo.com</a>
+                        <Link to="javascript:void(0)">
+                          info@MeilleurImmo.com
+                        </Link>
                       </li>
                     </ul>
                   </div>
@@ -108,19 +116,19 @@ class Header extends Component {
                   <div className="attr-nav">
                     <ul className="social_share clearfix">
                       <li>
-                        <a href="javascript:void(0)" className="facebook">
+                        <Link to="javascript:void(0)" className="facebook">
                           <i className="fa fa-facebook" />
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="javascript:void(0)" className="twitter">
+                        <Link to="javascript:void(0)" className="twitter">
                           <i className="fa fa-twitter" />
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a className="google" href="javascript:void(0)">
+                        <Link className="google" to="javascript:void(0)">
                           <i className="icon-google4" />
-                        </a>
+                        </Link>
                       </li>
                     </ul>
                   </div>
@@ -134,9 +142,9 @@ class Header extends Component {
                     >
                       <i className="fa fa-bars" />
                     </button>
-                    <a className="navbar-brand sticky_logo" href="index2.html">
+                    <Link className="navbar-brand sticky_logo" to="index2.html">
                       <img src="images/logo-white.png" className="logo" />
-                    </a>
+                    </Link>
                   </div>
                   {/* End Header Navigation */}
                   <div className="collapse navbar-collapse" id="navbar-menu">
@@ -146,51 +154,51 @@ class Header extends Component {
                       data-out="fadeOut"
                     >
                       <li className="dropdown">
-                        <a
-                          href="#."
+                        <Link
+                          to="#."
                           className="dropdown-toggle"
                           data-toggle="dropdown"
                         >
                           Immobilier{" "}
-                        </a>
+                        </Link>
                         <ul className="dropdown-menu">
                           <li>
-                            <a href="/achat">Achat</a>
+                            <Link to="/achat">Achat</Link>
                           </li>
                           <li>
-                            <a href="/location">Location</a>
+                            <Link to="/location">Location</Link>
                           </li>
                         </ul>
                       </li>
                       <li className="dropdown">
-                        <a
-                          href="#."
+                        <Link
+                          to="#."
                           className="dropdown-toggle"
                           data-toggle="dropdown"
                         >
                           Services{" "}
-                        </a>
+                        </Link>
                         <ul className="dropdown-menu">
                           <li>
-                            <a href="/etudeProjet">Etude de projet </a>
+                            <Link to="/etudeProjet">Etude de projet </Link>
                           </li>
 
                           <li>
-                            <a href="/conseils">Conseils</a>
+                            <Link to="/conseils">Conseils</Link>
                           </li>
                           <li>
-                            <a href="/autre">Autres</a>
+                            <Link to="/autre">Autres</Link>
                           </li>
                         </ul>
                       </li>
                       <li>
-                        <a href="/reclamation">Réclamation</a>
+                        <Link to="/reclamation">Réclamation</Link>
                       </li>
                       <li>
-                        <a href="/agents">Nos Agents</a>
+                        <Link to="/agents">Nos Agents</Link>
                       </li>
                       <li>
-                        <a href="/contact">Contactez Nous</a>
+                        <Link to="/contact">Contactez Nous</Link>
                       </li>
                     </ul>
                   </div>
@@ -204,4 +212,13 @@ class Header extends Component {
   }
 }
 
-export default Header;
+const mapStateToProps = state => {
+  return {
+    user: state.userReducer.user
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  null
+)(Header);

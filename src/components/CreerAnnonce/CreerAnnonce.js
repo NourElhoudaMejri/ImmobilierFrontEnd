@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { connect } from "react-redux";
+import { compose } from "redux";
+import { withRouter } from "react-router-dom";
 import axios from "axios";
 import NavBar from "./navBar";
 import TextEditor from "./textEditor";
@@ -36,11 +38,16 @@ class CreerAnnonce extends Component {
       nombreGarage: "",
       nombreSalon: ""
     };
-
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
   }
+
+  componentDidMount() {
+    this.accessControl();
+  }
+
+  accessControl = () => {
+    let autorization = localStorage.getItem("Authorization");
+    if (!autorization) this.props.history.push("/login");
+  };
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
@@ -106,20 +113,14 @@ class CreerAnnonce extends Component {
           <div className="container">
             <div className="row">
               <div className="col-md-12 text-center">
-                <h1 className="text-uppercase">Propriétés favorites </h1>
-                <p>
-                  Serving you since 1999. Lorem ipsum dolor sit amet consectetur
-                  adipiscing elit.
-                </p>
-                <ol className="breadcrumb text-center">
-                  <li>
-                    <a href="#">Acceuil</a>
-                  </li>
-                  <li>
-                    <a href="#">Pages</a>
-                  </li>
-                  <li className="active">Ma Propriété</li>
-                </ol>
+                <h1 className="text-uppercase"> Notre Site Immobilier </h1>
+                <h3
+                  className="text-uppercase"
+                  style={{ color: "white", marginBottom: "27px" }}
+                >
+                  Vente, Achat Etude et Conseil dans le domaine Immobilier
+                </h3>
+                <p className="text-uppercase">Serving you since 1999</p>
               </div>
             </div>
           </div>
@@ -508,7 +509,6 @@ class CreerAnnonce extends Component {
                       {/* <MyUploader /> */}
                       {/* <textarea id="txtEditor" defaultValue={""} />*/}
                     </div>
-
                     <div className="col-sm-12">
                       <h3 className="bottom15 margin40">Options</h3>
                       <div className="search-propertie-filters">
@@ -539,7 +539,6 @@ class CreerAnnonce extends Component {
                         </div>
                       </div>
                     </div>
-
                     <div className="col-sm-12">
                       <h3 className="bottom15 margin40">
                         Vidéo de Présentation
@@ -553,9 +552,7 @@ class CreerAnnonce extends Component {
                         />
                       </div>
                     </div>
-
-                    <TextEditor />
-
+                    {/*  <TextEditor / > */}
                     <div className="col-sm-12">
                       <h3 className="bottom15 margin40">Placez sur la carte</h3>
                       <div className="single-query form-group bottom15">
@@ -566,9 +563,7 @@ class CreerAnnonce extends Component {
                           placeholder="Enter La Localisation"
                         />
                       </div>
-                      <div id="single_map">
-                        <GoogleApiWrapper />
-                      </div>
+                      <div id="single_map">{/* <GoogleApiWrapper /> */}</div>
                     </div>
                     <div className="col-md-4" style={{ marginTop: "138px" }}>
                       <button
@@ -596,4 +591,16 @@ class CreerAnnonce extends Component {
   }
 }
 
-export default CreerAnnonce;
+const mapStateToProps = state => {
+  return {
+    user: state.userReducer
+  };
+};
+
+export default compose(
+  connect(
+    mapStateToProps,
+    null
+  ),
+  withRouter
+)(CreerAnnonce);

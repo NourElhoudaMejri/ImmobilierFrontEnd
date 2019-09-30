@@ -1,9 +1,12 @@
 import React, { Component } from "react";
+
 import "./Login.css";
 import Register from "./registerItem";
 import LoginItem from "./loginItem";
 
 class Login extends Component {
+  onLoginClick = () => {};
+
   render() {
     return (
       <div className="Login">

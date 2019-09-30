@@ -1,42 +1,66 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { compose } from "redux";
 
 class ProfilItem extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      nom: "",
+      prenom: "",
+      adress: "",
+      tel: "",
+      email: "",
+      isEditable: false
+    };
   }
+
+  componentDidMount() {
+    this.accessControl();
+    this.setState({
+      ...this.props.user
+    });
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.user !== state && !state.isEditable) {
+      return { ...props.user };
+    }
+  }
+
+  accessControl = () => {
+    let autorization = localStorage.getItem("Authorization");
+    if (!autorization) this.props.history.push("/login");
+  };
+
+  onChange = e => {
+    this.setState({
+      isEditable: true,
+      [e.target.name]: e.target.value
+    });
+  };
+
   render() {
     return (
       <div className="row">
         <form className="callus">
           <div className="col-sm-4">
             <div className="single-query">
-              <label>Votre Nom:</label>
+              <label>Nom:</label>
             </div>
           </div>
           <div className="col-sm-8">
             <div className="single-query form-group">
               <input
                 type="text"
-                placeholder="Bohdan Kononets"
-                className="keyword-input"
+                value={this.state.nom}
+                onChange={this.onChange}
+                name="nom"
               />
             </div>
           </div>
-          <div className="col-sm-4">
-            <div className="single-query">
-              <label>Ton Prénom:</label>
-            </div>
-          </div>
-          <div className="col-sm-8">
-            <div className="single-query form-group">
-              <input
-                type="text"
-                placeholder="(+01) 34 56 7890"
-                className="keyword-input"
-              />
-            </div>
-          </div>
+
           <div className="col-sm-4">
             <div className="single-query">
               <label>Teléphone:</label>
@@ -46,8 +70,10 @@ class ProfilItem extends Component {
             <div className="single-query form-group">
               <input
                 type="text"
-                placeholder="(+216) 34 567 890"
+                value={this.state.tel}
+                onChange={this.onChange}
                 className="keyword-input"
+                name="tel"
               />
             </div>
           </div>
@@ -60,22 +86,26 @@ class ProfilItem extends Component {
             <div className="single-query form-group">
               <input
                 type="text"
-                placeholder="bohdan@realtyhomes.com"
+                value={this.state.email}
+                onChange={this.onChange}
                 className="keyword-input"
+                name="email"
               />
             </div>
           </div>
           <div className="col-sm-4">
             <div className="single-query">
-              <label>Skype:</label>
+              <label>Adresse</label>
             </div>
           </div>
           <div className="col-sm-8">
             <div className="single-query form-group">
               <input
                 type="text"
-                placeholder="bohdan.kononets"
+                value={this.state.adress}
+                onChange={this.onChange}
                 className="keyword-input"
+                name="adress"
               />
             </div>
           </div>
@@ -88,6 +118,9 @@ class ProfilItem extends Component {
             <div className="single-query form-group">
               <textarea
                 placeholder="Écris ici quelque chose"
+                onChange={this.onChange}
+                value={this.state.descrption}
+                name="descrption"
                 className="form-control"
                 defaultValue={""}
               />
@@ -104,4 +137,16 @@ class ProfilItem extends Component {
   }
 }
 
-export default ProfilItem;
+const mapStateToProps = state => {
+  return {
+    user: state.userReducer.user
+  };
+};
+
+export default compose(
+  connect(
+    mapStateToProps,
+    null
+  ),
+  withRouter
+)(ProfilItem);
