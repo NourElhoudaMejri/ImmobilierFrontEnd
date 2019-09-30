@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { compose } from "redux";
 
+import { editProfileAction } from "../../Redux/userActions";
+
 class ProfilItem extends Component {
   constructor(props) {
     super(props);
@@ -26,7 +28,7 @@ class ProfilItem extends Component {
   static getDerivedStateFromProps(props, state) {
     if (props.user !== state && !state.isEditable) {
       return { ...props.user };
-    }
+    } else return {};
   }
 
   accessControl = () => {
@@ -41,10 +43,14 @@ class ProfilItem extends Component {
     });
   };
 
+  onSubmitChangeClicked = () => {
+    this.props.editProfileAction({ ...this.state });
+  };
+
   render() {
     return (
       <div className="row">
-        <form className="callus">
+        <div className="callus">
           <div className="col-sm-4">
             <div className="single-query">
               <label>Nom:</label>
@@ -119,19 +125,22 @@ class ProfilItem extends Component {
               <textarea
                 placeholder="Écris ici quelque chose"
                 onChange={this.onChange}
-                value={this.state.descrption}
-                name="descrption"
+                value={this.state.description}
+                name="description"
                 className="form-control"
                 defaultValue={""}
               />
             </div>
           </div>
           <div className="col-md-12 col-sm-12 col-xs-12 text-right">
-            <a className="btn-blue border_radius" href="#.">
+            <button
+              className="btn-blue border_radius"
+              onClick={this.onSubmitChangeClicked}
+            >
               Sauvegarder
-            </a>
+            </button>
           </div>
-        </form>
+        </div>
       </div>
     );
   }
@@ -146,7 +155,7 @@ const mapStateToProps = state => {
 export default compose(
   connect(
     mapStateToProps,
-    null
+    { editProfileAction }
   ),
   withRouter
 )(ProfilItem);

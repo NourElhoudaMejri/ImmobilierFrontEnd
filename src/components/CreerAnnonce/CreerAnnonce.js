@@ -49,9 +49,11 @@ class CreerAnnonce extends Component {
     if (!autorization) this.props.history.push("/login");
   };
 
-  onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-  }
+  onChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
   handleChange(e) {
     const item = e.target.name;
     const isChecked = e.target.checked;

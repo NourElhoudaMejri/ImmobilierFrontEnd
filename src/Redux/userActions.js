@@ -30,7 +30,6 @@ export const logoutAction = () => async dispatch => {
 };
 
 export const getProfileAction = () => async dispatch => {
-  console.log("zz");
   try {
     let response = await axios({
       method: "GET",
@@ -44,7 +43,30 @@ export const getProfileAction = () => async dispatch => {
   } catch (err) {
     dispatch({
       type: actions.GET_PROFILE_FAILURE,
-      payload: "fetching user profile failed, please to log in again"
+      payload: "fetching user profile failed"
+    });
+  }
+};
+
+export const editProfileAction = updatedUser => async dispatch => {
+  try {
+    let response = await axios({
+      method: "POST",
+      url: "/clients/update-profile",
+      headers: { Authorization: localStorage.getItem("Authorization") },
+      data: updatedUser
+    });
+
+    dispatch({
+      type: actions.EDIT_PROFILE_SUCCESS,
+      payload: response.data
+    });
+
+    alert("Profile has been updated");
+  } catch (err) {
+    dispatch({
+      type: actions.EDIT_PROFILE_FAILURE,
+      payload: "updating user profile failed"
     });
   }
 };
