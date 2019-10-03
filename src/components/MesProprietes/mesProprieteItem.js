@@ -8,6 +8,14 @@ class MesProprietesItem extends Component {
     super(props);
     this.state = {};
   }
+
+  onDeleteAnnoncementClicked = () => {
+    this.props.deleteAnnoncementAction(
+      this.props.item._id,
+      this.props.item.titre
+    );
+  };
+
   render() {
     const { item } = this.props;
 
@@ -16,7 +24,7 @@ class MesProprietesItem extends Component {
         <div className="row bg-hover">
           <div className="my-pro-list">
             <div className="col-md-2 col-sm-2 col-xs-12">
-              <img src="images/my-p-list.png" alt="image" />
+              <img src="images/my-p-list.png" />
             </div>
             <div className="col-md-8 col-sm-8 col-xs-12">
               <div className="feature-p-text">
@@ -37,7 +45,11 @@ class MesProprietesItem extends Component {
                   <i className="icon-pen2" title="Modifier l'annonce" />
                 </div>
                 <div className="item delete">
-                  <i className="icon-cross" title="Supprimer l'annonce" />
+                  <i
+                    className="icon-cross"
+                    title="Supprimer l'annonce"
+                    onClick={this.onDeleteAnnoncementClicked}
+                  />
                 </div>
               </div>
             </div>

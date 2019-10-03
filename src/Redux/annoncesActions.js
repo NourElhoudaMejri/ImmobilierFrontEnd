@@ -82,10 +82,13 @@ export const getMyAnnoncementsAction = () => async dispatch => {
   }
 };
 
-export const deleteAnnoncementAction = annoncementId => async dispatch => {
+export const deleteAnnoncementAction = (
+  annoncementId,
+  annoncementTitle
+) => async dispatch => {
   try {
     let response = await axios({
-      method: "GET",
+      method: "DELETE",
       url: `/bienImmobiliers/remove/${annoncementId}`,
       headers: { Authorization: localStorage.getItem("Authorization") }
     });
@@ -94,11 +97,10 @@ export const deleteAnnoncementAction = annoncementId => async dispatch => {
       type: actions.DELETE_ANNONCEMENT_SUCCESS,
       payload: annoncementId
     });
-    alert("the annoncement was deleted successfuly");
+    alert(`The ${annoncementTitle} annoncement was deleted successfuly`);
   } catch (err) {
-    dispatch({
-      type: actions.DELETE_ANNONCEMENT_FAILURE,
-      payload: "Delete annoncement failed, please to try again "
-    });
+    alert(
+      `The ${annoncementTitle}  annoncement deleting request failed, please to try again `
+    );
   }
 };
