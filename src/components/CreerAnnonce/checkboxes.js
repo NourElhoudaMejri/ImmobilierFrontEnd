@@ -1,50 +1,50 @@
 const checkboxes = [
   {
-    name: 'Piscine',
-    key: 'checkBox1',
-    label: 'piscine',
+    name: "piscine",
+    key: "checkBox1",
+    label: "piscine"
   },
   {
-    name: 'Jardin',
-    key: 'checkBox2',
-    label: 'jardin',
+    name: "jardin",
+    key: "checkBox2",
+    label: "jardin"
   },
   {
-    name: 'Interphone',
-    key: 'checkBox3',
-    label: 'interphone',
+    name: "interphone",
+    key: "checkBox3",
+    label: "interphone"
   },
   {
-    name: 'Accès internet',
-    key: 'checkBox4',
-    label: 'accès internet',
+    name: "internet",
+    key: "checkBox4",
+    label: "accès internet"
   },
   {
-    name: ' Vue de mer',
-    key: 'checkBox5',
-    label: ' vue de mer',
+    name: "vueSurMer",
+    key: "checkBox5",
+    label: "vue de mer"
   },
-  
+
   {
-    name: '  Cameras de surveillance',
-    key: 'checkBox6',
-    label: '  cameras de surveillance',
-  }, 
-   {
-    name: ' Chauffage ',
-    key: 'checkBox7',
-    label: ' chauffage ',
-  },  
-  {
-    name: ' Balcon ',
-    key: 'checkBox8',
-    label: ' balcon ',
-  }, 
-  {
-    name: ' Climatisation',
-    key: 'checkBox9',
-    label: ' climatisation',
+    name: "camera",
+    key: "checkBox6",
+    label: "cameras de surveillance"
   },
+  {
+    name: "chauffage",
+    key: "checkBox7",
+    label: "chauffage"
+  },
+  {
+    name: "balcon",
+    key: "checkBox8",
+    label: "balcon"
+  },
+  {
+    name: "climatisation",
+    key: "checkBox9",
+    label: "climatisation"
+  }
 ];
 
 export default checkboxes;

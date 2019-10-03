@@ -7,10 +7,13 @@ import NavBar from "./navBar";
 import TextEditor from "./textEditor";
 import GoogleApiWrapper from "../google-map/googleMap";
 import { MDBInput } from "mdbreact";
-import PropTypes from "prop-types";
 import checkboxes from "./checkboxes";
 import Checkbox from "./checkbox";
 import { villes, categories, numbers } from "./static";
+import { addAnnoncementAction } from "../../Redux/annoncesActions";
+
+import "./creerAnnonce.css";
+
 const BASE_URL = "http://localhost:8080/";
 
 class CreerAnnonce extends Component {
@@ -31,7 +34,17 @@ class CreerAnnonce extends Component {
       ValableAPartirDe: "",
       etat: "",
       categorie: "",
-      options: new Map(),
+      options: {
+        piscine: false,
+        jardin: false,
+        interphone: false,
+        internet: false,
+        vueSurMer: false,
+        camera: false,
+        chauffage: false,
+        balcon: false,
+        climatisation: false
+      },
       images: [],
       imageUrls: [],
       message: "",
@@ -54,12 +67,20 @@ class CreerAnnonce extends Component {
       [e.target.name]: e.target.value
     });
   };
+
+  onAddAnnoncementClick = () => {
+    this.props.addAnnoncementAction({
+      ...this.state
+    });
+  };
+
   handleChange(e) {
-    const item = e.target.name;
-    const isChecked = e.target.checked;
-    this.setState(prevState => ({
-      options: prevState.options.set(item, isChecked)
-    }));
+    this.setState({
+      options: {
+        ...this.state.options,
+        [e.target.name]: !this.state.options[e.target.name]
+      }
+    });
   }
   selectImages = event => {
     let images = [];
@@ -93,21 +114,8 @@ class CreerAnnonce extends Component {
       .catch(err => alert(err.message));
   };
 
-  onSubmit(e) {
-    e.preventDefault();
-
-    const bienImmobilier = {
-      ...this.state
-    };
-    console.log(bienImmobilier);
-
-    axios
-      .post("http://localhost:8080/bienImmobiliers/add", bienImmobilier)
-      .then(res => console.log(res.data))
-      .catch(err => console.log(err.response.data));
-  }
-
   render() {
+    console.log(this.state.options);
     return (
       <div className="CreerAnnonce">
         {/* Page Banner Start*/}
@@ -143,7 +151,7 @@ class CreerAnnonce extends Component {
                 </h2>
                 <form
                   className="callus clearfix border_radius submit_property"
-                  onSubmit={this.onSubmit}
+                  onSubmit={() => console.log("hello")}
                 >
                   <div className="row">
                     <div className="col-sm-6">
@@ -269,7 +277,7 @@ class CreerAnnonce extends Component {
 
                 <form
                   className="callus clearfix border_radius submit_property"
-                  onSubmit={this.onSubmit}
+                  onSubmit={() => console.log("hello")}
                 >
                   <div className="row">
                     <div className="col-sm-4">
@@ -517,30 +525,32 @@ class CreerAnnonce extends Component {
                         <div className="container-2">
                           <div className="row">
                             <div className="col-md-8 col-sm-8">
-                              <div className="form-group white">
-                                <React.Fragment>
-                                  {checkboxes.map(item => (
+                              <div className="form-group white checkbox-container ">
+                                {checkboxes.map(item => (
+                                  <div className="checkbox-unity">
+                                    <Checkbox
+                                      name={item.name}
+                                      checked={this.state.options[item.name]}
+                                      onChange={e => this.handleChange(e)}
+                                    />
                                     <label
                                       key={item.key}
-                                      style={{ fontSize: "16px" }}
+                                      style={{
+                                        fontSize: "16px",
+                                        textTransform: "capitalize"
+                                      }}
                                     >
-                                      <Checkbox
-                                        name={item.name}
-                                        checked={this.state.options.get(
-                                          item.name
-                                        )}
-                                        onChange={this.handleChange}
-                                      />
                                       {item.name}
                                     </label>
-                                  ))}
-                                </React.Fragment>
+                                  </div>
+                                ))}
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
+
                     <div className="col-sm-12">
                       <h3 className="bottom15 margin40">
                         Vidéo de Présentation
@@ -567,20 +577,17 @@ class CreerAnnonce extends Component {
                       </div>
                       <div id="single_map">{/* <GoogleApiWrapper /> */}</div>
                     </div>
-                    <div className="col-md-4" style={{ marginTop: "138px" }}>
-                      <button
-                        type="submit"
-                        className="btn-blue border_radius margin40"
-                        onSubmit={this.onSubmit}
-                        style={{ height: "60px" }}
-                      >
-                        {/* <Link to="/mesProprietes"> */}
-                        Envoyer
-                        {/* </Link> */}
-                      </button>
-                    </div>
                   </div>
                 </form>
+                <div className="col-md-4">
+                  <button
+                    className="btn-blue border_radius margin40"
+                    onClick={this.onAddAnnoncementClick}
+                    style={{ height: "60px", margin: "0px" }}
+                  >
+                    Ajouter
+                  </button>
+                </div>
               </div>
               <div className="col-sm-1 col-md-2" />
               <div className="col-sm-4" />
@@ -602,7 +609,7 @@ const mapStateToProps = state => {
 export default compose(
   connect(
     mapStateToProps,
-    null
+    { addAnnoncementAction }
   ),
   withRouter
 )(CreerAnnonce);
