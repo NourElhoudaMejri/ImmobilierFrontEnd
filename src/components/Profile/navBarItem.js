@@ -28,7 +28,7 @@ class NavBarItem extends Component {
             </Link>
           </li>
           <li>
-            <Link href="my_properties.html" onClick={e => this.onLinkClick(e)}>
+            <Link to="/mesProprietes" onClick={e => this.onLinkClick(e)}>
               <i className="icon-icons215" /> Mes Propriétés
             </Link>
           </li>

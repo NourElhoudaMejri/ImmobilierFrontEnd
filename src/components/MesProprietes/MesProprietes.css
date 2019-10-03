@@ -1,0 +1,28 @@
+.mes-proprietes-item .actions-containers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.mes-proprietes-item .actions-containers .item {
+  width: 25px;
+  font-size: 20px;
+  margin: 17px;
+}
+
+.mes-proprietes-item .actions-containers .delete:hover {
+  color: brown;
+}
+
+.mes-proprietes-item .actions-containers .edit:hover {
+  color: rgb(9, 221, 9);
+}
+
+.mes-proprietes-item .actions-containers .delete {
+  transition: 0.5s ease;
+}
+
+.mes-proprietes-item .actions-containers .edit {
+  transition: 0.5s ease;
+}

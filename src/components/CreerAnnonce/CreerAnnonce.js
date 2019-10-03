@@ -70,9 +70,13 @@ class CreerAnnonce extends Component {
   };
 
   onAddAnnoncementClick = () => {
-    this.props.addAnnoncementAction({
-      ...this.state
-    });
+    this.props
+      .addAnnoncementAction({
+        ...this.state
+      })
+      .then(res => {
+        res === 200 && this.props.history.push("/mesProprietes");
+      });
   };
 
   handleChange(e) {
@@ -124,7 +128,7 @@ class CreerAnnonce extends Component {
           <div className="container">
             <div className="row">
               <div className="col-md-12 text-center">
-                <h1 className="text-uppercase"> Notre Site Immobilier </h1>
+                <h1 className="text-uppercase"> Immobilier App </h1>
                 <h3
                   className="text-uppercase"
                   style={{ color: "white", marginBottom: "27px" }}
@@ -208,8 +212,8 @@ class CreerAnnonce extends Component {
                       </div>
                     </div>
 
-                    <div className="col-md-6">
-                      <div className="form-group has-danger">
+                    <div className="col-sm-6">
+                      <div className="single-query form-group bottom20">
                         <label className="control-label">Adresse</label>
                         <input
                           type="text"

@@ -11,17 +11,12 @@ class DetailsAnnonce extends Component {
 
   displayAnnoncementOptions = () => {
     let { options } = this.props.selectedAnnoncement;
-    console.log(options);
-
     let optionsKeys = Object.keys(options);
-
     let validOptions = optionsKeys.filter(el => options[el] === true);
-
     return validOptions;
   };
 
   render() {
-    console.log(this.displayAnnoncementOptions());
     let { selectedAnnoncement } = this.props;
     return (
       <div className="DetailsAnnonce">

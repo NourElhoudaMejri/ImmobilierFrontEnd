@@ -4,12 +4,14 @@ import filtersReducer from "./filters";
 import announcementsReducer from "./annonces";
 import userReducer from "./user";
 import singleAnnouncementReducer from "./singleAnnonce";
+import mesProprietesReducer from "./mesProprietes";
 
 let reducers = combineReducers({
   filtersReducer,
   announcementsReducer,
   userReducer,
-  singleAnnouncementReducer
+  singleAnnouncementReducer,
+  mesProprietesReducer
 });
 
 export default reducers;

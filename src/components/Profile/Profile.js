@@ -11,7 +11,7 @@ class Profile extends Component {
           <div className="container">
             <div className="row">
               <div className="col-md-12 text-center">
-                <h1 className="text-uppercase"> Notre Site Immobilier </h1>
+                <h1 className="text-uppercase"> Immobilier App </h1>
                 <h3
                   className="text-uppercase"
                   style={{ color: "white", marginBottom: "27px" }}

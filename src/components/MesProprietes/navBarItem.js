@@ -24,7 +24,11 @@ class NavBarItem extends Component {
             </Link>
           </li>
           <li>
-            <Link to="/mesProprietes" onClick={e => this.onLinkClick(e)}>
+            <Link
+              to="/mesProprietes"
+              onClick={e => this.onLinkClick(e)}
+              className="active"
+            >
               <i className="icon-icons215" /> Mes Propriétés
             </Link>
           </li>
@@ -33,7 +37,6 @@ class NavBarItem extends Component {
               to="/"
               onClick={e => this.onLinkClick(e)}
               to="/déposer-une-annonce"
-              className="active"
             >
               <i className="icon-icons215" /> Soumettre la propriété
             </Link>

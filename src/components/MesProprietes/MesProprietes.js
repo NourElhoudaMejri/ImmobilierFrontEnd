@@ -1,7 +1,17 @@
 import React, { Component } from "react";
-import NavBarItem from "./../Profile/navBarItem";
+import { connect } from "react-redux";
+
+import NavBarItem from "./navBarItem";
 import MesProprietesListe from "./mesPropreitesListe";
+import "./MesProprietes.css";
+
+import { getMyAnnoncementsAction } from "../../Redux/annoncesActions";
+
 class MesProprietes extends Component {
+  componentDidMount() {
+    this.props.getMyAnnoncementsAction();
+  }
+
   render() {
     return (
       <div className="MesProprietes">
@@ -10,20 +20,14 @@ class MesProprietes extends Component {
           <div className="container">
             <div className="row">
               <div className="col-md-12 text-center">
-                <h1 className="text-uppercase">Favorite properties</h1>
-                <p>
-                  Serving you since 1999. Lorem ipsum dolor sit amet consectetur
-                  adipiscing elit.
-                </p>
-                <ol className="breadcrumb text-center">
-                  <li>
-                    <a href="#">Home</a>
-                  </li>
-                  <li>
-                    <a href="#">Pages</a>
-                  </li>
-                  <li className="active">My properties</li>
-                </ol>
+                <h1 className="text-uppercase"> Immobilier App </h1>
+                <h3
+                  className="text-uppercase"
+                  style={{ color: "white", marginBottom: "27px" }}
+                >
+                  Vente, Achat Etude et Conseil dans le domaine Immobilier
+                </h3>
+                <p className="text-uppercase">Serving you since 1999</p>
               </div>
             </div>
           </div>
@@ -42,24 +46,7 @@ class MesProprietes extends Component {
             </div>
           </div>
           <div className="container  list-t-border">
-            <MesProprietesListe />
-          </div>
-          <div className="container">
-            <div className="row padding_top">
-              <div className="col-md-12">
-                <ul className="pager">
-                  <li>
-                    <a href="#">1</a>
-                  </li>
-                  <li className="active">
-                    <a href="#">2</a>
-                  </li>
-                  <li>
-                    <a href="#">3</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
+            <MesProprietesListe mesProprietes={this.props.mesProprietes} />
           </div>
         </section>
         {/* My - Property end */}
@@ -68,4 +55,13 @@ class MesProprietes extends Component {
   }
 }
 
-export default MesProprietes;
+const mapStateToProps = state => {
+  return {
+    mesProprietes: state.mesProprietesReducer.mesProprietes
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { getMyAnnoncementsAction }
+)(MesProprietes);
