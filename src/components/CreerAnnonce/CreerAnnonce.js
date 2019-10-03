@@ -23,12 +23,13 @@ class CreerAnnonce extends Component {
       titre: "",
       region: "",
       surface: "",
+      adresse: "",
       prix: "",
       nombreEtage: "",
       nombrePiece: "",
       nombreFacade: "",
       nombreSalleDeBain: "",
-      statut: "A louer",
+      statut: "",
       description: "",
       ALaUne: "",
       ValableAPartirDe: "",
@@ -209,16 +210,13 @@ class CreerAnnonce extends Component {
 
                     <div className="col-md-6">
                       <div className="form-group has-danger">
-                        <label className="control-label">
-                          Valables A Partir De
-                        </label>
+                        <label className="control-label">Adresse</label>
                         <input
-                          type="date"
+                          type="text"
                           className="form-control"
-                          placeholder="dd/mm/yyyy"
                           onChange={this.onChange}
-                          value={this.state.ValableAPartirDe}
-                          name="ValableAPartirDe"
+                          value={this.state.adresse}
+                          name="adresse"
                         />
                       </div>
                     </div>
@@ -442,6 +440,37 @@ class CreerAnnonce extends Component {
                         </select>
                       </div>
                     </div>
+                    <div className="col-sm-12">
+                      <h3 className="bottom15 margin40"> Description</h3>
+                      <br />
+                      <textarea
+                        className="keyword-input description-taxt-area"
+                        placeholder="Entrer le titre de votre bien"
+                        name="description"
+                        value={this.state.description}
+                        onChange={this.onChange}
+                      ></textarea>
+                      {/* <MyUploader /> */}
+                      {/* <textarea id="txtEditor" defaultValue={""} />*/}
+                    </div>
+
+                    <div className="col-sm-6">
+                      <div className="form-group has-danger">
+                        <h3 className="bottom15 margin40">
+                          Valables A Partir De
+                        </h3>
+                        <br />
+                        <input
+                          type="date"
+                          className="form-control"
+                          placeholder="dd/mm/yyyy"
+                          onChange={this.onChange}
+                          value={this.state.ValableAPartirDe}
+                          name="ValableAPartirDe"
+                        />
+                      </div>
+                    </div>
+
                     <div className="row">
                       <div className="col-sm-12">
                         <h3 className="margin40 bottom15">
@@ -512,13 +541,7 @@ class CreerAnnonce extends Component {
                         </div>
                       </div>
                     </div>
-                    <div className="col-sm-12">
-                      <h3 className="bottom15 margin40"></h3>
-                      <br />
 
-                      {/* <MyUploader /> */}
-                      {/* <textarea id="txtEditor" defaultValue={""} />*/}
-                    </div>
                     <div className="col-sm-12">
                       <h3 className="bottom15 margin40">Options</h3>
                       <div className="search-propertie-filters">

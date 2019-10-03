@@ -21,7 +21,7 @@ export const getAnnouncementsList = queries => async dispatch => {
   } catch (err) {
     dispatch({
       type: actions.FETCH_ANNONCEMENT_FAILURE,
-      payload: "Fetching announements list failed, please to terty "
+      payload: "Fetching announements list failed, please to try again "
     });
   }
 };
@@ -53,7 +53,7 @@ export const getSelectedAnnoncementAction = id => async dispatch => {
   } catch (err) {
     dispatch({
       type: actions.FETCH_SELECTED_ANNONCEMENT_FAILED,
-      payload: "Fetching selected annoncement failed, please to terty "
+      payload: "Fetching selected annoncement failed, please to try again "
     });
   }
 };

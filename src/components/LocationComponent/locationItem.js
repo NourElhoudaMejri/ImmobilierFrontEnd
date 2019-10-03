@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {Link} from"react-router-dom"
+import { Link } from "react-router-dom";
 class LocationItem extends Component {
   constructor(props) {
     super(props);
@@ -11,7 +11,7 @@ class LocationItem extends Component {
       <div className="cbp-item sale">
         <div className="property_item">
           <div className="image">
-            <Link to ={`/detailsLocation/${item.id}`}>
+            <Link to={`/detail-annonce/${item.id}`}>
               <img
                 src="images/listing1.jpg"
                 alt="latest property"

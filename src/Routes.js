@@ -11,7 +11,7 @@ import CreeAnnonce from "./components/CreerAnnonce/CreerAnnonce";
 import Favoris from "./components/Favoris/Favoris";
 import MesProprietes from "./components/MesProprietes/MesProprietes";
 import DetailsAchat from "./components/DetailsAchat/DetailsAchat";
-import DetailsLocation from "./components/DetailsLocation/DetailsLocation";
+import DetailsAnnonce from "./components/DetailsAnnonce/DetailsAnnonce";
 import EtudeProjet from "./components/EtudeProjet/EtudeProjet";
 import Conseils from "./components/Conseils/Conseils";
 import Autre from "./components/Autre/Autre";
@@ -34,7 +34,10 @@ class Routes extends React.Component {
         <Route path="/favoris" component={Favoris} />
         <Route path="/mesProprietes" component={MesProprietes} />
         <Route path="/detailsAchat" component={DetailsAchat} />
-        <Route path="/detailsLocation/:id" component={DetailsLocation} />
+        <Route
+          path={`/detail-annonce/:id`}
+          render={props => <DetailsAnnonce id={props.match.params.id} />}
+        />
         <Route path="/etudeProjet" component={EtudeProjet} />
         <Route path="/conseils" component={Conseils} />
         <Route path="/autre" component={Autre} />

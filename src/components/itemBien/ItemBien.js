@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 import "./ItemBien.css";
 
@@ -13,13 +14,13 @@ class Itembien extends Component {
       <div className="card">
         <div className="property_item heading_space">
           <div className="image">
-            <a href="property_detail1.html">
+            <Link to={`/detail-annonce/${item._id}`}>
               <img
                 src="images/latest1.jpg"
                 alt="latest property"
                 className="img-responsive"
               />
-            </a>
+            </Link>
           </div>
           <div className="price default_clr clearfix bottom20">
             <span className="tag pull-left">{item.statut}</span>
